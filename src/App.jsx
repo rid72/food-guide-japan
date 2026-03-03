@@ -98,12 +98,16 @@ export default function App() {
     const load = async () => {
       if (isSupabaseReady) {
         try {
-          const { data, error } = await supabase
+          // 5-second timeout — fall back to hardcoded if Supabase hangs
+          const timeout = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Supabase timeout")), 5000)
+          );
+          const query = supabase
             .from("restaurants")
             .select("*")
             .order("rank", { ascending: true });
+          const { data, error } = await Promise.race([query, timeout]);
           if (!error && data && data.length > 0) {
-            // Normalise must_order JSON field
             const normalised = data.map((r) => ({
               ...r,
               mustOrder: Array.isArray(r.must_order)
@@ -118,7 +122,7 @@ export default function App() {
             return;
           }
         } catch (e) {
-          console.warn("Supabase load failed, using fallback:", e);
+          console.warn("Supabase load failed, using fallback data:", e.message);
         }
       }
       setRestaurants(FALLBACK_RESTAURANTS);
