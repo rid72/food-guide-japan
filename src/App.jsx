@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase, isSupabaseReady } from "./lib/supabase";
+import HotelList from "./HotelList";
 
 // ─── Fallback data (used if Supabase is not yet configured) ───────────────────
 const FALLBACK_RESTAURANTS = [
@@ -337,7 +338,7 @@ export default function App() {
 
           {/* View tabs */}
           <div className="flex gap-2 mt-4 flex-wrap">
-            {[["ranked","📊 Ranked"],["musttry","❤️ Must-Try"],["visited","✅ Visited"]].map(([v, label]) => (
+            {[["ranked","📊 Ranked"],["musttry","❤️ Must-Try"],["visited","✅ Visited"],["hotel","🏨 Hotel List"]].map(([v, label]) => (
               <button key={v} onClick={() => setView(v)}
                 className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-all ${view === v ? "bg-white text-gray-900 shadow" : "bg-white/10 text-gray-300 hover:bg-white/20"}`}>
                 {label}
@@ -350,8 +351,11 @@ export default function App() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-4">
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        {/* Hotel List Tab */}
+        {view === "hotel" && <HotelList />}
+
+        {/* Main ranked/musttry/visited content */}
+        {view !== "hotel" && <><div className="flex flex-wrap gap-2 mb-4">
           <div className="flex-1 min-w-[200px]">
             <input type="text" placeholder="Search restaurants or cuisine…" value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -465,6 +469,7 @@ export default function App() {
           <p>Rankings by Claude · Tabelog · Michelin Guide 2026 · World's 50 Best 2025 · Asia's 50 Best 2025</p>
           <p>Your journal is saved locally and persists across sessions 💾</p>
         </div>
+        </>}
       </div>
 
       {selected && <DetailModal r={selected} />}
