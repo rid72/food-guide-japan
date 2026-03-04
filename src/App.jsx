@@ -431,6 +431,12 @@ export default function App() {
                       </div>
                     )}
                     {entry.comment && <p className="text-xs text-gray-500 mt-1 italic line-clamp-1">"{entry.comment}"</p>}
+                    {/* Tabelog link */}
+                    <a href={r.tabelog} target="_blank" rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1 mt-2 text-xs text-amber-600 hover:text-amber-800 font-medium bg-amber-50 hover:bg-amber-100 px-2 py-1 rounded-lg transition-colors">
+                      📋 Book on Tabelog
+                    </a>
                   </div>
                   <div className="flex-shrink-0 text-right">
                     <div className="text-lg font-black text-amber-600">{r.rating}</div>
