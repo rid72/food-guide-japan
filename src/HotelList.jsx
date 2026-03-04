@@ -1,6 +1,10 @@
 // Hotel List Tab — Shangri-La Tokyo recommended restaurants
 // Ranked by: Tabelog score + Michelin + App presence
 
+// Helper: build a Tabelog search URL using the Japanese restaurant name
+const tbl = (jaName) =>
+  `https://tabelog.com/en/tokyo/rstLst/?vs=1&sk=${encodeURIComponent(jaName)}&SrtT=rt`;
+
 const HOTEL_LIST = [
   // ─── In App ──────────────────────────────────────────────────────────────
   {
@@ -9,7 +13,7 @@ const HOTEL_LIST = [
     style: "À la carte & Omakase",
     distance: "10–15 min by car",
     tabelog: 4.08,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13002070/",
+    tabelogUrl: tbl("久兵衛 銀座"),
     michelin: "1★",
     inApp: { rank: 23, tier: "B+" },
     website: "http://www.kyubey.jp/en",
@@ -22,7 +26,7 @@ const HOTEL_LIST = [
     style: "Omakase (Course)",
     distance: "10–15 min by car",
     tabelog: 4.10,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13098930/",
+    tabelogUrl: tbl("銀座 奥田 懐石"),
     michelin: "1★",
     inApp: null,
     website: "https://www.ginzaokuda.com/en/homepage-e/",
@@ -34,7 +38,7 @@ const HOTEL_LIST = [
     style: "Omakase (Course)",
     distance: "15–20 min by car",
     tabelog: 3.87,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1308/A130801/13008401/",
+    tabelogUrl: tbl("菊乃井 赤坂"),
     michelin: "2★",
     inApp: null,
     website: "https://kikunoi.jp/en/",
@@ -46,7 +50,7 @@ const HOTEL_LIST = [
     style: "Omakase",
     distance: "25 min by car",
     tabelog: 3.90,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1306/A130601/13253804/",
+    tabelogUrl: tbl("鮨 将司 北青山"),
     michelin: "1★",
     inApp: null,
     website: "https://sushimasashi.tokyo/",
@@ -58,7 +62,7 @@ const HOTEL_LIST = [
     style: "Omakase (Course)",
     distance: "20 min by car",
     tabelog: 4.00,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1307/A130702/13041285/",
+    tabelogUrl: tbl("西麻布 大嶋 日本料理"),
     michelin: null,
     inApp: null,
     website: "https://www.nishiazabu-oshima.com/",
@@ -70,7 +74,7 @@ const HOTEL_LIST = [
     style: "Omakase",
     distance: "10–15 min by car",
     tabelog: 3.82,
-    tabelogUrl: "https://www.sushi-sugawara.com/",
+    tabelogUrl: tbl("鮨 すがわら"),
     michelin: null,
     inApp: null,
     website: "https://www.sushi-sugawara.com/",
@@ -82,7 +86,7 @@ const HOTEL_LIST = [
     style: "Course menu",
     distance: "10–15 min by car",
     tabelog: 3.85,
-    tabelogUrl: "https://onodera-group.com/tempura-ginza/",
+    tabelogUrl: tbl("天ぷら おのでら 銀座"),
     michelin: null,
     inApp: null,
     website: "https://onodera-group.com/tempura-ginza/",
@@ -94,7 +98,7 @@ const HOTEL_LIST = [
     style: "À la carte & Course",
     distance: "15 min by car",
     tabelog: 3.85,
-    tabelogUrl: "https://www.bifteck.co.jp/en/",
+    tabelogUrl: tbl("ビフテキのカワムラ 東京"),
     michelin: null,
     inApp: null,
     website: "https://www.bifteck.co.jp/en/",
@@ -106,7 +110,7 @@ const HOTEL_LIST = [
     style: "Omakase",
     distance: "10–15 min by car",
     tabelog: 3.63,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13266129/",
+    tabelogUrl: tbl("鮨 門わき 銀座"),
     michelin: null,
     inApp: null,
     website: "https://sushi-kadowaki.jp/eng/",
@@ -118,7 +122,7 @@ const HOTEL_LIST = [
     style: "Course menu",
     distance: "10 min by walk",
     tabelog: 3.75,
-    tabelogUrl: "https://ten-masa.jp/english",
+    tabelogUrl: tbl("天政 てんぷら 東京"),
     michelin: null,
     inApp: null,
     website: "https://ten-masa.jp/english",
@@ -130,7 +134,7 @@ const HOTEL_LIST = [
     style: "Course menu",
     distance: "15 min by car",
     tabelog: 3.75,
-    tabelogUrl: "https://honten-yamashina.jp/",
+    tabelogUrl: tbl("本店山科 鉄板焼 和牛"),
     michelin: null,
     inApp: null,
     website: "https://honten-yamashina.jp/",
@@ -142,7 +146,7 @@ const HOTEL_LIST = [
     style: "À la carte & Course",
     distance: "10–15 min by car",
     tabelog: 3.72,
-    tabelogUrl: "https://tabelog.com/en/tokyo/A1301/A130101/13001070/",
+    tabelogUrl: tbl("天一 本店 てんぷら"),
     michelin: null,
     inApp: null,
     website: "https://tenichi.co.jp/mainshop/",
@@ -154,7 +158,7 @@ const HOTEL_LIST = [
     style: "À la carte & Course",
     distance: "15 min by car",
     tabelog: 3.70,
-    tabelogUrl: "http://www.seryna.co.jp/en/seryna/ginza/",
+    tabelogUrl: tbl("瀬里奈 銀座 しゃぶしゃぶ"),
     michelin: null,
     inApp: null,
     website: "http://www.seryna.co.jp/en/seryna/ginza/",
@@ -166,7 +170,7 @@ const HOTEL_LIST = [
     style: "À la carte & Course",
     distance: "5 min by car",
     tabelog: 3.65,
-    tabelogUrl: "https://www.zakuro.co.jp/restaurant/muromachi/index.html",
+    tabelogUrl: tbl("ざくろ 室町 しゃぶしゃぶ"),
     michelin: null,
     inApp: null,
     website: "https://www.zakuro.co.jp/restaurant/muromachi/index.html",
@@ -178,7 +182,7 @@ const HOTEL_LIST = [
     style: "À la carte & Course",
     distance: "15 min by car",
     tabelog: 3.65,
-    tabelogUrl: "https://www.ginza-rangetsu.com/",
+    tabelogUrl: tbl("らん月 銀座 すき焼き"),
     michelin: null,
     inApp: null,
     website: "https://www.ginza-rangetsu.com/",
@@ -190,7 +194,7 @@ const HOTEL_LIST = [
     style: "À la carte & Omakase",
     distance: "10 min by walk",
     tabelog: 3.65,
-    tabelogUrl: "http://sushikou-marubiru.com/",
+    tabelogUrl: tbl("寿司幸 丸ビル 丸の内"),
     michelin: null,
     inApp: null,
     website: "http://sushikou-marubiru.com/",
@@ -202,7 +206,7 @@ const HOTEL_LIST = [
     style: "À la carte & Omakase",
     distance: "15 min by walk",
     tabelog: 3.63,
-    tabelogUrl: "https://yanone.co.jp/",
+    tabelogUrl: tbl("矢野根寿司 日本橋"),
     michelin: null,
     inApp: null,
     website: "https://yanone.co.jp/",
@@ -214,7 +218,7 @@ const HOTEL_LIST = [
     style: "À la carte & Course",
     distance: "5 min by walk",
     tabelog: 3.55,
-    tabelogUrl: "https://www.xexgroup.jp/en/tokyo",
+    tabelogUrl: tbl("鉄板焼AN XEX 東京"),
     michelin: null,
     inApp: null,
     website: "https://www.xexgroup.jp/en/tokyo",
@@ -227,7 +231,7 @@ const HOTEL_LIST = [
     style: "À la carte / Teppanyaki / Sushi",
     distance: "In Hotel (Level 28)",
     tabelog: 3.70,
-    tabelogUrl: "https://www.shangri-la.com/tokyo/shangrila/dining/restaurants/nadaman/",
+    tabelogUrl: tbl("ナダマン シャングリラ 東京"),
     michelin: null,
     inApp: null,
     website: "https://www.shangri-la.com/tokyo/shangrila/dining/restaurants/nadaman/",
@@ -239,7 +243,7 @@ const HOTEL_LIST = [
     style: "À la carte",
     distance: "In Hotel (Level 29)",
     tabelog: 3.50,
-    tabelogUrl: "https://www.shangri-la.com/tokyo/shangrila/dining/restaurants/piacere/",
+    tabelogUrl: tbl("ピアチェーレ シャングリラ 東京"),
     michelin: null,
     inApp: null,
     website: "https://www.shangri-la.com/tokyo/shangrila/dining/restaurants/piacere/",
@@ -251,7 +255,7 @@ const HOTEL_LIST = [
     style: "Light bites / Afternoon tea",
     distance: "In Hotel (Level 28)",
     tabelog: null,
-    tabelogUrl: "https://www.shangri-la.com/tokyo/shangrila/dining/bars-lounges/lobby-lounge/",
+    tabelogUrl: null,
     michelin: null,
     inApp: null,
     website: "https://www.shangri-la.com/tokyo/shangrila/dining/bars-lounges/lobby-lounge/",
@@ -325,10 +329,12 @@ export default function HotelList() {
               <p className="text-xs text-gray-600 italic">{r.note}</p>
 
               <div className="flex gap-3 mt-2">
-                <a href={r.tabelogUrl} target="_blank" rel="noopener noreferrer"
-                  className="text-xs text-amber-600 hover:text-amber-800 font-medium">
-                  Tabelog →
-                </a>
+                {r.tabelogUrl && (
+                  <a href={r.tabelogUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-xs text-amber-600 hover:text-amber-800 font-medium">
+                    Search Tabelog →
+                  </a>
+                )}
                 <a href={r.website} target="_blank" rel="noopener noreferrer"
                   className="text-xs text-gray-500 hover:text-gray-700">
                   Website →
@@ -357,7 +363,7 @@ export default function HotelList() {
       ))}
 
       <p className="text-center text-xs text-gray-400 py-4">
-        Tabelog scores: verified where possible, estimated otherwise. Check Tabelog for current ratings.
+        "Search Tabelog →" opens a search for that restaurant — click the top result. Scores are estimated.
       </p>
     </div>
   );
